@@ -1,7 +1,7 @@
 import './jquery.min.js';
 
 function requestOnuData() {
-  $.ajax({
+  jQuery.ajax({
     url: 'http://192.168.1.43//requestHandlers/onuReqHandle.php',
     type: 'get',
     dataType: 'JSON',
@@ -20,7 +20,7 @@ function requestOnuData() {
           "<td align='center'>" + hora + "</td>" +
           "</tr>";
 
-        $("#onuTable tbody").append(tr_str);
+        jQuery("#onuTable tbody").append(tr_str);
       }
     }
   });
