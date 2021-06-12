@@ -1,29 +1,30 @@
 import './jquery.min.js';
 
-function requestOnuData() {
+function loadTableData() {
+  ajaxGetData({ opcode: 0 }, '#master-table');
+  ajaxGetData({ opcode: 1, sn: 'GPON00F42038'}, '#onu1-table');
+  ajaxGetData({ opcode: 1, sn: 'ZTEGC9744A32'}, '#onu2-table');
+}
+
+function ajaxGetData(dataObject, tableHtmlId) {
   jQuery.ajax({
-    url: 'http://192.168.1.43//requestHandlers/onuReqHandle.php',
+    // url: 'http://192.168.1.43//data-requests/serve.php',
+    url: 'http://127.0.0.1//data-requests/serve.php',
     type: 'get',
+    data: dataObject,
     dataType: 'JSON',
     success: (response) => {
-      let len = response.length;
-      for (let i = 0; i < len; i++) {
-        let sn = response[i].sn;
-        let olt_rx = response[i].olt_rx;
-        let onu_rx = response[i].onu_rx;
-        let hora = response[i].hora;
-
-        let tr_str = "<tr>" +
-          "<td align='center'>" + sn + "</td>" +
-          "<td align='center'>" + olt_rx + "</td>" +
-          "<td align='center'>" + onu_rx + "</td>" +
-          "<td align='center'>" + hora + "</td>" +
-          "</tr>";
-
-        jQuery("#onuTable tbody").append(tr_str);
+      for (let row of response) {
+        const HEADERS = Object.keys(row);
+        let tableRowHtml = '<tr>';
+        for (let header of HEADERS) {
+          tableRowHtml += "<td align='center'>" + row[header] + "</td>";
+        }
+        tableRowHtml += '</tr>';
+        jQuery(tableHtmlId + ' tbody').append(tableRowHtml);
       }
     }
   });
 }
 
-window.requestOnuData = requestOnuData;
+window.loadTableData = loadTableData;

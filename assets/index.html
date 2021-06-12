@@ -6,13 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Main page</title>
-    <!-- <link rel="stylesheet" href="css/main.css" /> -->
     <script type="module" src="./js/main.js" defer></script>
+    <!-- <link rel="stylesheet" href="css/main.css" /> -->
   </head>
 
-  <body onload="requestOnuData();">
+  <body onload="loadTableData();">
     <div class="container">
-      <table id="onuTable" border="1" >
+      <table id="master-table" border="1" >
+        <thead>
+          <tr>
+            <th width="8%">PON</th>
+            <th width="8%">NUM</th>
+            <th width="8%">COD_CLIENTE</th>
+            <th width="8%">COD_ONU</th>
+            <th width="8%">SN</th>
+            <th width="8%">TIPO</th>
+            <th width="8%">ESTADO</th>
+            <th width="8%">DISTANCIA</th>
+            <th width="8%">OLT_RX</th>
+            <th width="8%">ONU_RX</th>
+            <th width="8%">ACTUALIZADO</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="container">
+      <table id="onu1-table" border="1">
         <thead>
           <tr>
             <th width="20%">SN</th>
@@ -21,10 +43,26 @@
             <th width="20%">HORA</th>
           </tr>
         </thead>
-
         <tbody>
         </tbody>
       </table>
     </div>
+
+    <div class="container">
+      <table id="onu2-table" border="1">
+        <thead>
+          <tr>
+            <th width="20%">SN</th>
+            <th width="20%">OLT_RX</th>
+            <th width="20%">ONU_RX</th>
+            <th width="20%">HORA</th>
+          </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+
   </body>
 </html>
