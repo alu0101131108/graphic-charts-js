@@ -7,6 +7,7 @@
 'use strict';
 
 import './lib/jquery.min.js';
+import {GraphicView} from './graphic-view.js';
 
 /**
  * Retrieves data for the main table and for two specific tables.
@@ -57,9 +58,11 @@ function tableClickEvents() {
 
 const clickHandler = (sn) => {
   return () => {
-    console.log('Clicked ' + sn + '!');
+    new GraphicView(document.body, sn);
   }
 }
+
+window.tableClickEvents = tableClickEvents;
 
 window.onload = () => {
   loadTableData();
