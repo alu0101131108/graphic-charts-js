@@ -1,5 +1,5 @@
 html {
-  background: rgb(156, 179, 255);
+  background: rgb(201, 214, 255);
 }
 
 h1 {
@@ -15,7 +15,7 @@ h1 {
 table {
   width: 100%;
   border: 2px solid black;
-  background: rgb(197, 205, 255);
+  background: white;
 }
 
 th, td {
