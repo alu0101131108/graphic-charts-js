@@ -1,9 +1,9 @@
 /**
- * @author Sebastián Daniel Tamayo Guzmán
- * @since 17/06/2021
- * @desc  Creates a graphic view app with the data retrieved from
- * a concrete device.
  * @module GraphicData
+ * @desc  Integrates a plugin which will make possible the graphic
+ * visualization of data.
+ * @since 17/06/2021
+ * @author Sebastián Daniel Tamayo Guzmán
  */
 'use strict';
 
@@ -12,6 +12,7 @@ import './lib/chart.min.js';
 class GraphicView {
 
   constructor(root, sn) {
+  
     this.root = root;
     this.backup = this.root.innerHTML;
     this.root.innerHTML = '';
