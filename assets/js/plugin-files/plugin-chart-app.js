@@ -22,7 +22,7 @@ class PluginChartApp {
 
   plug() {
     const CONTAINER = document.body;
-    // Find a good place to plug.
+    /** To do: Find a good place to plug. */
     CONTAINER.appendChild(this.searchBox.getHtmlElement());
   }
 
@@ -49,14 +49,22 @@ class PluginChartApp {
   }
 
   loadGraphicView(serialNumber, data) {
-    console.log('Mostrar gráfica');
-    console.log(serialNumber);
-    console.log(data);
-    // Hacer backup
-    // Cambiar url
-    // Limpiar html
-    // Iniciar graphic view de sn concreto en div
-    // Poner botonsito pa ir patras
+    const PARENT = document.body;
+    const BACKUP = PARENT.innerHTML;
+    PARENT.innerHTML = '';
+
+    const CONTAINER = document.createElement('div');
+    /** To do: Set container/chart size, position, etc. */
+    new GraphicView(CONTAINER, serialNumber, data);
+
+    const BUTTON = document.createElement('button');
+    BUTTON.textContent = 'Back to table';
+    BUTTON.onclick = () => {
+      PARENT.innerHTML = BACKUP;
+    }
+
+    PARENT.appendChild(CONTAINER);
+    PARENT.appendChild(BUTTON);
   }
 
 }

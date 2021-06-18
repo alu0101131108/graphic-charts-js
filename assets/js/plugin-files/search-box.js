@@ -13,18 +13,15 @@ class SearchBox {
     this.textInput = document.createElement('input');
     this.textInput.type = 'text';
     this.textInput.value = '';
-    
     // Submit button.
     this.searchButton = document.createElement('button');
     this.searchButton.textContent = buttonText;
     this.searchButton.onclick = () => {
-      // Sanitizes text through regular expression.
       let sanitized = this.textInput.value.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, '');
       if (sanitized !== '') {
         handler(sanitized);
       }
     };
-
     // Root container.
     this.root = document.createElement('div');
     this.root.appendChild(this.textInput);

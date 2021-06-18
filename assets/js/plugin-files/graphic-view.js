@@ -11,68 +11,45 @@ import './chart.min.js';
 
 class GraphicView {
 
-  constructor(root, sn) {
-  
-    this.root = root;
-    this.backup = this.root.innerHTML;
-    this.root.innerHTML = '';
+  constructor(container, serialNumber, data) {
+    this.serialNumber = serialNumber;
+    this.data = this.processJson(data);
     this.canvas = document.createElement('canvas');
-    this.requestData(sn);
-    this.root.appendChild(this.canvas);
+    container.appendChild(this.canvas);
+    this.chart();
+  }
 
-    
-    const BUTTON = document.createElement('button');
-    BUTTON.textContent = 'Back to table';
-    BUTTON.onclick = () => {
-      this.root.innerHTML = this.backup;
-      tableClickEvents();
+  processJson(jsonData) {
+    const OLT_RXS = [];
+    const ONU_RXS = [];
+    const HORAS = [];
+    for (let row of jsonData) {
+      OLT_RXS.push(parseFloat(row['OLT_RX']));
+      ONU_RXS.push(parseFloat(row['ONU_RX']));
+      HORAS.push(new Date(row['HORA']));
     }
-    this.root.appendChild(BUTTON);
+    const DATA = {
+      OLT_RX: OLT_RXS,
+      ONU_RX: ONU_RXS,
+      HORA: HORAS
+    };
+    return DATA;
   }
 
-  requestData(target) {
-    jQuery.ajax({
-      url: 'http://192.168.1.43//data-requests/serve.php',
-      // url: 'http://127.0.0.1//data-requests/serve.php',
-      type: 'get',
-      data: {
-        opcode: 1,
-        sn: target
-      },
-      dataType: 'JSON',
-      success: (response) => {
-        const OLT_RXS = [];
-        const ONU_RXS = [];
-        const HORAS = [];
-        for (let row of response) {
-          OLT_RXS.push(parseFloat(row['OLT_RX']));
-          ONU_RXS.push(parseFloat(row['ONU_RX']));
-          HORAS.push(new Date(row['HORA']));
-        }
-        const DATA = {
-          OLT_RX: OLT_RXS,
-          ONU_RX: ONU_RXS,
-          HORA: HORAS
-        };
-        this.setCharts(DATA);
-      }
-    });
-  }
-
-  setCharts(data) {
+  chart() {
     new Chart(this.canvas, {
       type: 'line',
       data: {
-        labels: data['HORA'].map((elem) => { 
+        labels: this.data['HORA'].map((elem) => { 
           return elem.toLocaleTimeString(); 
         }),
         datasets: [{ 
-            data: data['OLT_RX'],
+            data: this.data['OLT_RX'],
             label: 'OLT_RX',
             borderColor: '#3e95cd',
             fill: false
           }, { 
-            data: data['ONU_RX'],
+            data: this.data['ONU_RX'],
             label: 'ONU_RX',
             borderColor: '#8e5ea2',
             fill: false
