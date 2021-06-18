@@ -10,22 +10,36 @@
 class SearchBox {
   constructor(handler, buttonText) {
     // Text input.
-    this.textInput = document.createElement('input');
-    this.textInput.type = 'text';
-    this.textInput.value = '';
+    const TEXT_INPUT = document.createElement('input');
+    TEXT_INPUT.type = 'text';
+    TEXT_INPUT.placeholder = 'Serial Number (SN)';
+    TEXT_INPUT.value = '';
     // Submit button.
-    this.searchButton = document.createElement('button');
-    this.searchButton.textContent = buttonText;
-    this.searchButton.onclick = () => {
-      let sanitized = this.textInput.value.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, '');
-      if (sanitized !== '') {
-        handler(sanitized);
+    const SEARCH_BUTTON = document.createElement('button');
+    SEARCH_BUTTON.textContent = buttonText;
+    SEARCH_BUTTON.onclick = () => {
+      const SANITIZED = TEXT_INPUT.value.replace(/[^a-z0-9áéíóúñü \.,_-]/gim, '');
+      if (SANITIZED !== '') {
+        handler(SANITIZED);
       }
     };
+    // Container with input text + submit button.
+    this.form = document.createElement('div');
+    this.form.appendChild(TEXT_INPUT);
+    this.form.appendChild(SEARCH_BUTTON);
+
+    // Message container.
+    this.message = document.createElement('span');
+    this.message.style.color = 'red';
+    // this.message.style.background = 'red';
+    this.message.textContent = '';
+
     // Root container.
     this.root = document.createElement('div');
-    this.root.appendChild(this.textInput);
-    this.root.appendChild(this.searchButton);
+    this.root.style.textAlign = 'center';
+    this.root.style.padding = '10px';
+    this.root.appendChild(this.form);
+    this.root.appendChild(this.message);
   }
 
   getHtmlElement() {
@@ -33,8 +47,10 @@ class SearchBox {
   }
 
   showError(error) {
-    console.log('SearchBox: ' + error);
-    // To do.
+    this.message.textContent = error;
+    setTimeout(() => {
+      this.message.textContent = '';
+    }, 1000);
   }
 
 }
