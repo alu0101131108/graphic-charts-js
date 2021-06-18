@@ -49,6 +49,7 @@ class PluginChartApp {
   }
 
   loadGraphicView(serialNumber, data) {
+    /** To do: Find the right parent to insert the chart. */
     const PARENT = document.body;
     const BACKUP = PARENT.innerHTML;
     PARENT.innerHTML = '';
