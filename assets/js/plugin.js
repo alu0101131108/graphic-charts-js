@@ -1,4 +1,4 @@
-import { PluginChartApp } from './plugin-chart-app.js';
+import { PluginChartApp } from './plugin-files/plugin-chart-app.js';
 
 const prevOnload = window.onload;
 window.onload = () => {

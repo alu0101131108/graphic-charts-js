@@ -6,7 +6,7 @@
  */
 'use strict';
 
-import { DataRetriever } from './data-retriever.js';
+import { DataRetriever } from './plugin-files/data-retriever.js';
 
 window.onload = () => {
   const DATA_RETRIEVER = new DataRetriever('http://192.168.1.43//data-requests/serve.php');

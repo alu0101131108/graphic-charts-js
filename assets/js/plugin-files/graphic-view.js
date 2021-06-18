@@ -7,7 +7,7 @@
  */
 'use strict';
 
-import './lib/chart.min.js';
+import './chart.min.js';
 
 class GraphicView {
 
