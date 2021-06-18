@@ -8,6 +8,13 @@
 'use strict';
 
 class SearchBox {
+  /**
+   * It will create the HTML element structure to represent
+   * the search box. It also attaches a handler to the
+   * button and sets some text to it.
+   * @param {Function} handler 
+   * @param {String} buttonText 
+   */
   constructor(handler, buttonText) {
     // Text input.
     const TEXT_INPUT = document.createElement('input');
@@ -42,12 +49,20 @@ class SearchBox {
     this.root.appendChild(this.message);
   }
 
+  /**
+   * Getter for the main HTML Element.
+   */
   getHtmlElement() {
     return this.root;
   }
 
+  /**
+   * Changes the view of the Search Box in order to show
+   * an error message.
+   * @param {String} error 
+   */
   showError(error) {
-    this.message.textContent = error;
+    this.message.textContent = 'Error: ' + error;
     setTimeout(() => {
       this.message.textContent = '';
     }, 1000);

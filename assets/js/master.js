@@ -8,13 +8,31 @@
 
 import { DataRetriever } from './plugin-files/data-retriever.js';
 
+/**
+ * Retrieve and fill each three data tables.
+ */
 window.onload = () => {
-  const DATA_RETRIEVER = new DataRetriever('http://192.168.1.43//data-requests/serve.php');
-  DATA_RETRIEVER.get({ opcode: 0 }, fillTable('#master-table'));
-  DATA_RETRIEVER.get({ opcode: 1, sn: 'GPON00F42038' }, fillTable('#onu1-table'));
-  DATA_RETRIEVER.get({ opcode: 1, sn: 'ZTEGC9744A32' }, fillTable('#onu2-table'));
+  const URL = 'http://192.168.1.43//data-requests/serve.php';
+  const DATA_RETRIEVER = new DataRetriever(URL);
+  DATA_RETRIEVER.get(
+    { opcode: 0 }, 
+    fillTable('#master-table')
+  );
+  DATA_RETRIEVER.get(
+    { opcode: 1, sn: 'GPON00F42038' }, 
+    fillTable('#onu1-table')
+  );
+  DATA_RETRIEVER.get(
+    { opcode: 1, sn: 'ZTEGC9744A32' }, 
+    fillTable('#onu2-table')
+  );
 }
 
+/**
+ * Works as a handler to the data requests made. It fills
+ * html tables with values recieved by request.
+ * @param {String} tableId Html ID
+ */
 function fillTable(tableId) {
   return (response) => {
     const HEADERS = Object.keys(response[0]);

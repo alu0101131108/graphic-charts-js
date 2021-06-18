@@ -1,7 +1,7 @@
 /**
  * @module GraphicData
- * @desc  Integrates a plugin which will make possible the graphic
- * visualization of data.
+ * @desc  This class will make use of Chart.js to draw a chart
+ * inside a given html container.
  * @since 17/06/2021
  * @author Sebastián Daniel Tamayo Guzmán
  */
@@ -10,7 +10,13 @@
 import './chart.min.js';
 
 class GraphicView {
-
+  /**
+   * Main canvas is created and attached to the given container.
+   * Then data is processed and outputted as a chart.
+   * @param {HTMLElement} container Parent HTML Container.
+   * @param {String} serialNumber Target id.
+   * @param {Object} data JSON Data.
+   */
   constructor(container, serialNumber, data) {
     this.serialNumber = serialNumber;
     this.data = this.processJson(data);
@@ -19,6 +25,11 @@ class GraphicView {
     this.chart();
   }
 
+  /**
+   * Process JSON Data and transforms it, so its easier
+   * to manipulate when creating the chart.
+   * @param {Object} jsonData 
+   */
   processJson(jsonData) {
     const OLT_RXS = [];
     const ONU_RXS = [];
@@ -36,6 +47,9 @@ class GraphicView {
     return DATA;
   }
 
+  /**
+   * Sets configuration and draws the chart. 
+   */
   chart() {
     new Chart(this.canvas, {
       type: 'line',
