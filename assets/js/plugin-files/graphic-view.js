@@ -21,6 +21,7 @@ class GraphicView {
     this.serialNumber = serialNumber;
     this.data = this.processJson(data);
     this.canvas = document.createElement('canvas');
+    this.canvas.id = 'chart-canvas';
     container.appendChild(this.canvas);
     this.chart();
   }

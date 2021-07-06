@@ -37,14 +37,12 @@ class SearchBox {
 
     // Message container.
     this.message = document.createElement('span');
-    this.message.style.color = 'red';
-    // this.message.style.background = 'red';
+    this.message.id = 'search-box-errmessage';
     this.message.textContent = '';
 
     // Root container.
     this.root = document.createElement('div');
-    this.root.style.textAlign = 'center';
-    this.root.style.padding = '10px';
+    this.root.id = 'search-box-container';
     this.root.appendChild(this.form);
     this.root.appendChild(this.message);
   }

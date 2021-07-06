@@ -1,0 +1,18 @@
+#chart-container {
+  width: 90%;
+  height: 90%;
+}
+
+#search-box-container {
+  text-align: center;
+  padding: 10px;
+}
+
+#search-box-errmessage {
+  color: red;
+  /* background: white; */
+}
+
+#chart-canvas {
+  border: none;
+}

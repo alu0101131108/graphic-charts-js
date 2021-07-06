@@ -81,8 +81,7 @@ class PluginChartApp {
 
     // Create the view object.
     const CONTAINER = document.createElement('div');
-    CONTAINER.style.width = '90%';
-    CONTAINER.style.height = '90%';
+    CONTAINER.id = 'chart-container';
     new GraphicView(CONTAINER, serialNumber, data);
 
     // Set the back button.
