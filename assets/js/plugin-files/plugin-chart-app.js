@@ -17,7 +17,9 @@ class PluginChartApp {
    * Sets the data retriever and the search box.
    */
   constructor() {
-    this.dataRetriever = new DataRetriever('http://192.168.1.43//data-requests/serve.php');
+    const URL = 'http://192.168.1.43//data-requests/serve.php';
+    // const URL = 'http://localhost//data-requests/serve.php';
+    this.dataRetriever = new DataRetriever(URL);
     this.searchBox = new SearchBox(this.queryHandler.bind(this), 'Generar gráfica');
     this.plug();
   }
@@ -67,20 +69,36 @@ class PluginChartApp {
   loadGraphicView(serialNumber, data) {
     /** To do: Find the right parent to insert the chart. */
     const PARENT = document.body;
-    const BACKUP = PARENT.innerHTML;
-    PARENT.innerHTML = '';
 
+    // Hide all elements inside parent and save the original display style.
+    const BACKUP_DISPLAYS = {};
+    PARENT.childNodes.forEach(node => {
+      if(node.style) {
+        BACKUP_DISPLAYS[node] = node.style.display;
+        node.style.display = 'none';
+      }
+    });
+
+    // Create the view object.
     const CONTAINER = document.createElement('div');
     CONTAINER.style.width = '90%';
     CONTAINER.style.height = '90%';
     new GraphicView(CONTAINER, serialNumber, data);
 
+    // Set the back button.
     const BUTTON = document.createElement('button');
     BUTTON.textContent = 'Back to table';
     BUTTON.onclick = () => {
-      PARENT.innerHTML = BACKUP;
+      PARENT.removeChild(BUTTON);
+      PARENT.removeChild(CONTAINER);
+      PARENT.childNodes.forEach(node => {
+        if (node.style) {
+          node.style.display = BACKUP_DISPLAYS[node];
+        }      
+      });
     }
 
+    // Append both view and back button.
     PARENT.appendChild(CONTAINER);
     PARENT.appendChild(BUTTON);
   }

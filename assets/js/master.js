@@ -13,6 +13,7 @@ import { DataRetriever } from './plugin-files/data-retriever.js';
  */
 window.onload = () => {
   const URL = 'http://192.168.1.43//data-requests/serve.php';
+  // const URL = 'http://localhost//data-requests/serve.php';
   const DATA_RETRIEVER = new DataRetriever(URL);
   DATA_RETRIEVER.get(
     { opcode: 0 }, 
