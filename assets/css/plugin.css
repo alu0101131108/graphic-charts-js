@@ -1,6 +1,23 @@
 #chart-container {
-  width: 90%;
-  height: 90%;
+  background-color: white;
+  height: 80vh;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  padding-right: 3vh;
+  padding-left: 3vh;
+  text-align: center;
+}
+
+#chart-back-button {
+  margin: 20px;
+  font-family: Helvetica;
+  font-size: 20px;
+  padding: 5px;
+  transition-duration: 0.1s;
+}
+
+#chart-back-button:hover {
+  background-color: #7e7e7e;
 }
 
 #search-box-container {
@@ -13,6 +30,3 @@
   /* background: white; */
 }
 
-#chart-canvas {
-  border: none;
-}

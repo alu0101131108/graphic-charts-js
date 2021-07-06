@@ -52,7 +52,7 @@ class GraphicView {
    * Sets configuration and draws the chart. 
    */
   chart() {
-    new Chart(this.canvas, {
+    const CHART = new Chart(this.canvas, {
       type: 'line',
       data: {
         labels: this.data['HORA'].map((elem) => { 
@@ -66,15 +66,23 @@ class GraphicView {
           }, { 
             data: this.data['ONU_RX'],
             label: 'ONU_RX',
-            borderColor: '#8e5ea2',
+            borderColor: '#367c33',
             fill: false
           }
         ]
       },
       options: {
-        title: {
-          display: true,
-          text: 'Device Data Chart'
+        responsive: true,
+        maintainAspectRatio: false,
+        interaction: {
+          intersect: false,
+          axis: 'x'
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: this.serialNumber
+          }
         }
       }
     });

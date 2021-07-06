@@ -86,9 +86,9 @@ class PluginChartApp {
 
     // Set the back button.
     const BUTTON = document.createElement('button');
+    BUTTON.id = 'chart-back-button';
     BUTTON.textContent = 'Back to table';
     BUTTON.onclick = () => {
-      PARENT.removeChild(BUTTON);
       PARENT.removeChild(CONTAINER);
       PARENT.childNodes.forEach(node => {
         if (node.style) {
@@ -98,8 +98,8 @@ class PluginChartApp {
     }
 
     // Append both view and back button.
+    CONTAINER.appendChild(BUTTON);
     PARENT.appendChild(CONTAINER);
-    PARENT.appendChild(BUTTON);
   }
 
 }
