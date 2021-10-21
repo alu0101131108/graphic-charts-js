@@ -13,3 +13,4 @@ Table 1: ONU [SN, OLT_RX, ONU_RX, HORA]
 ```/opt/lmapp/htdocs/requestHandlers/onuReqHandle.php```: Executes Query and echo's the result. Also needs CORS Headers.
 
 ## Client side - Data request and graphic viewer.
+Principal class graphic-view located at: ```/assets/js/graphic-view.js```
